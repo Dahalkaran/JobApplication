@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Job Application Dashboard</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+  <div class="container">
+    <h1>Job Application Dashboard</h1>
+
+    <div class="dashboard-summary">
+      <h2>Overview</h2>
+      <div id="overview"></div>
+    </div>
+
+    <div class="dashboard-visuals">
+      <h2>Application Progress</h2>
+      <canvas id="statusChart"></canvas>
+    </div>
+    <div class="company-list">
+      <h2>Companies</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Company Name</th>
+            <th>Contact Details</th>
+            <th>Industry</th>
+            <th>Notes</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody id="companiesTable">
+          <!-- Company list will be dynamically loaded -->
+        </tbody>
+      </table>
+    </div>
+    
+    <div class="application-list">
+      <h2>Job Applications</h2>
+      <button id="openAddApplicationForm">Add Job Application</button>
+      <button id="openAddCompanyForm">Add Company</button>
+      <table>
+        <thead>
+          <tr>
+            <th>Company</th>
+            <th>Job Title</th>
+            <th>Status</th>
+            <th>Date Applied</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody id="applicationsTable">
+          <!-- Data will be dynamically loaded -->
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- Add Job Application Modal -->
+  <div class="modal" id="addApplicationModal" style="display: none;">
+    <h2>Add Job Application</h2>
+    <form id="addApplicationForm" enctype="multipart/form-data">
+      <div>
+        <label for="companySelect">Company Name:</label>
+        <select id="companySelect" name="companyId" required>
+          <!-- Companies will be dynamically loaded -->
+        </select>
+      </div>
+      <div>
+        <label for="jobTitle">Job Title:</label>
+        <input type="text" id="jobTitle" name="jobTitle" required>
+      </div>
+      <div>
+        <label for="applicationDate">Application Date:</label>
+        <input type="date" id="applicationDate" name="applicationDate" required>
+      </div>
+      <div>
+        <label for="status">Status:</label>
+        <select id="status" name="status">
+          <option value="Applied">Applied</option>
+          <option value="Interviewed">Interviewed</option>
+          <option value="Offered">Offered</option>
+          <option value="Rejected">Rejected</option>
+          <option value="Accepted">Accepted</option>
+        </select>
+      </div>
+      <div>
+        <label for="notes">Notes:</label>
+        <textarea id="notes" name="notes"></textarea>
+      </div>
+      <div>
+        <label for="attachment">Attachment:</label>
+        <input type="file" id="attachment" name="attachment">
+      </div>
+      <button type="submit">Add Application</button>
+      <button type="button" id="closeAddApplicationModal">Cancel</button>
+    </form>
+</div>
+
+
+  <!-- Add Company Form -->
+  <section id="addCompanyForm" style="display: none;">
+    <h2>Add Company</h2>
+    <form id="companyForm">
+      <label for="name">Company Name:</label>
+      <input type="text" id="name" name="name" required>
+
+      <label for="contactDetails">Contact Details:</label>
+      <input type="text" id="contactDetails" name="contactDetails">
+
+      <label for="industry">Industry:</label>
+      <input type="text" id="industry" name="industry">
+
+      <label for="notes">Notes:</label>
+      <input id="notes" name="notes">
+
+      <button type="submit">Add Company</button>
+      <button type="button" id="cancelCompanyForm">Cancel</button>
+    </form>
+  </section>
+
+  <script src="js/dashboard.js"></script>
+</body>
+</html>
